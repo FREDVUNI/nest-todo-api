@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  dotenv.config();
+  dotenv.config({ path: '.env' });
 
   //prevents null inputs
   app.useGlobalPipes(
