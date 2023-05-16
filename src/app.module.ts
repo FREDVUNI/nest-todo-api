@@ -2,26 +2,24 @@ import { Module } from '@nestjs/common';
 import { TodoModule } from './todo/todo.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from './todo/entities/todo.entities';
-
-console.log(process.env.DB_HOST);
-console.log(process.env.DB_PORT);
-console.log(process.env.DB_USERNAME);
-console.log(process.env.DB_PASSWORD);
-console.log(process.env.DB_DATABASE);
-console.log(process.env);
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     TodoModule,
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      port: parseInt(process.env.DB_PORT, 10) || 3306,
-      host: process.env.DB_HOST,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      entities: [Todo],
-      synchronize: true,
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (ConfigService: ConfigService) => ({
+        type: 'mysql',
+        port: ConfigService.get<number>('DB_PORT'),
+        host: ConfigService.get<string>('DB_HOST'),
+        username: ConfigService.get<string>('DB_USERNAME'),
+        password: ConfigService.get<string>('DB_PASSWORD'),
+        database: ConfigService.get<string>('DB_DATABASE'),
+        entities: [Todo],
+        synchronize: ConfigService.get<boolean>('DB_SYNC'),
+      }),
     }),
   ],
 })
