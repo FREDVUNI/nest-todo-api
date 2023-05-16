@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import  * as dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
@@ -15,8 +15,8 @@ async function bootstrap() {
     }),
   );
 
-  const configService = app.get(ConfigService);
-  
+  app.get(ConfigService);
+
   await app.listen(3000);
 }
 bootstrap();
