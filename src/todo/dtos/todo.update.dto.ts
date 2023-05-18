@@ -1,12 +1,12 @@
-import { IsNumber,IsString,IsBoolean } from 'class-validator';
+import { IsNumber, IsString, IsBoolean } from 'class-validator';
 
-export class UpdateTodoDto{
-    @IsNumber()
-    id:number;
+export class UpdateTodoDto {
+  @IsNumber()
+  id: number;
 
-    @IsString()
-    item:string;
+  @IsString()
+  item: string;
 
-    @IsBoolean()
-    completed:boolean;
+  @IsBoolean()
+  completed: boolean;
 }
