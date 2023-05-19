@@ -3,10 +3,8 @@ import { TodoModule } from './todo/todo.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from './todo/entities/todo.entities';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TodoController } from './todo/todo.controller';
 
 @Module({
-  controllers: [TodoController],
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TodoModule,
