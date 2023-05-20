@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { TodoModule } from './todo/todo.module';
+import { TodoModule } from './todos/todo.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Todo } from './todo/entities/todo.entities';
+import { Todo } from './todos/entities/todo.entities';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
