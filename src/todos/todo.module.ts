@@ -5,8 +5,8 @@ import { Todo } from './entities/todo.entities';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  providers: [TodoService],
   controllers: [TodoController],
+  providers: [TodoService],
   imports: [TypeOrmModule.forFeature([Todo])],
 })
 export class TodoModule {}
